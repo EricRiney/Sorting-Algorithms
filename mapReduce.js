@@ -1,3 +1,5 @@
+// for me to solve laters
+
 var animals = ["cat","dog","fish"];
 var lengths = [];
 var item;
