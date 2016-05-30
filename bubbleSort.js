@@ -5,7 +5,6 @@
 // otherwise, they stayed in their position.
 // Hence, the biggest among first three is in the third position.
 
-
 function bubbleSort(array) {
    var length = array.length;
    for (var i = length-1; i>=0; i--) {
@@ -19,6 +18,7 @@ function bubbleSort(array) {
    }
    return array;
 }
+
 // console.log(bubbleSort([7,5,2,4,3,9])); //[2, 3, 4, 5, 7, 9]
 // console.log(bubbleSort([9,7,5,4,3,1])); //[1, 3, 4, 5, 7, 9]
 // console.log(bubbleSort([1,2,3,4,5,6])); //[1, 2, 3, 4, 5, 6]
