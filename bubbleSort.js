@@ -1,8 +1,8 @@
-// compare the first item with the second. 
-// if the first item is bigger than the second item. 
+// compare the first item with the second.
+// if the first item is bigger than the second item.
 // you swap them so that the bigger one stays in the second position.
-// then compare second with third item. if second item is bigger than the third, we swap them. 
-// otherwise, they stayed in their position. 
+// then compare second with third item. if second item is bigger than the third, we swap them.
+// otherwise, they stayed in their position.
 // Hence, the biggest among first three is in the third position.
 
 
@@ -19,6 +19,6 @@ function bubbleSort(array) {
    }
    return array;
 }
-console.log(bubbleSort([7,5,2,4,3,9])); //[2, 3, 4, 5, 7, 9]
-console.log(bubbleSort([9,7,5,4,3,1])); //[1, 3, 4, 5, 7, 9]
-console.log(bubbleSort([1,2,3,4,5,6])); //[1, 2, 3, 4, 5, 6]
+// console.log(bubbleSort([7,5,2,4,3,9])); //[2, 3, 4, 5, 7, 9]
+// console.log(bubbleSort([9,7,5,4,3,1])); //[1, 3, 4, 5, 7, 9]
+// console.log(bubbleSort([1,2,3,4,5,6])); //[1, 2, 3, 4, 5, 6]
