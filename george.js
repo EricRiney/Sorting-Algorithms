@@ -45,8 +45,6 @@ creates this tree
  
 */
 
-console.log(tree._root);
-
 Tree.prototype.traverseDF = function(callback) {
  
     // this is a recurse and immediately-invoking function 
@@ -64,3 +62,9 @@ Tree.prototype.traverseDF = function(callback) {
     })(this._root);
  
 };
+
+tree.traverseDF(function(node) {
+    console.log(node.data);
+})
+
+
