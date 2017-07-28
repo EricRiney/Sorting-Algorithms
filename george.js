@@ -9,6 +9,7 @@ function Node(data) {
 function Tree(data) {
     var node = new Node(data);
     this._root = node;
+    
 }
 
 var tree = new Tree('one');
@@ -46,7 +47,6 @@ creates this tree
 */
 
 Tree.prototype.traverseDF = function(callback) {
- 
     // this is a recurse and immediately-invoking function 
     (function recurse(currentNode) {
         // step 2
@@ -54,13 +54,24 @@ Tree.prototype.traverseDF = function(callback) {
             // step 3
             recurse(currentNode.children[i]);
         }
- 
         // step 4
-        callback(currentNode);
-         
-        // step 1
-    })(this._root);
- 
+        callback(currentNode);    
+    })
+    // step 1    
+    (this._root);
+};
+
+Tree.prototype.traverseBF = function(callback) {
+    var queue = []; 
+    queue.push(this._root);
+    currentTree = queue.shift();
+    while(currentTree){
+        for (var i = 0, length = currentTree.children.length; i < length; i++) {
+            queue.push(currentTree.children[i]);
+        }
+        callback(currentTree);
+        currentTree = queue.shift();
+    }
 };
 
 tree.traverseDF(function(node) {
