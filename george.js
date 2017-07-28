@@ -89,6 +89,7 @@ Tree.prototype.contains = function(callback, traversal) {
     traversal.call(this, callback);
 };
 
+// Add method
 Tree.prototype.add = function(data, toData, traversal) {
     var child = new Node(data),
         parent = null,
@@ -108,6 +109,7 @@ Tree.prototype.add = function(data, toData, traversal) {
     }
 };
 
+// Remove Method
 Tree.prototype.remove = function(data, fromData, traversal) {
     var tree = this,
         parent = null,
