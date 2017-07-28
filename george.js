@@ -46,6 +46,12 @@ creates this tree
  
 */
 
+
+// Depth-first search (DFS) is an algorithm for traversing or 
+// searching tree or graph data structures. 
+// One starts at the root (selecting some arbitrary node 
+// as the root in the case of a graph) and explores as far
+// as possible along each branch before backtracking.
 Tree.prototype.traverseDF = function(callback) {
     // this is a recurse and immediately-invoking function 
     (function recurse(currentNode) {
@@ -61,6 +67,10 @@ Tree.prototype.traverseDF = function(callback) {
     (this._root);
 };
 
+// Breadth-first search (BFS) is an algorithm for traversing or 
+// searching tree or graph data structures. It starts at the tree root 
+// (or some arbitrary node of a graph, sometimes referred to as a 'search key') 
+// and explores the neighbor nodes first, before moving to the next level neighbors.
 Tree.prototype.traverseBF = function(callback) {
     var queue = []; 
     queue.push(this._root);
@@ -74,8 +84,68 @@ Tree.prototype.traverseBF = function(callback) {
     }
 };
 
-tree.traverseDF(function(node) {
+// Contains method
+Tree.prototype.contains = function(callback, traversal) {
+    traversal.call(this, callback);
+};
+
+Tree.prototype.add = function(data, toData, traversal) {
+    var child = new Node(data),
+        parent = null,
+        callback = function(node) {
+            if (node.data === toData) {
+                parent = node;
+            }
+        };
+ 
+    this.contains(callback, traversal);
+ 
+    if (parent) {
+        parent.children.push(child);
+        child.parent = parent;
+    } else {
+        throw new Error('Cannot add node to a non-existent parent.');
+    }
+};
+
+Tree.prototype.remove = function(data, fromData, traversal) {
+    var tree = this,
+        parent = null,
+        childToRemove = null,
+        index;
+ 
+    var callback = function(node) {
+        if (node.data === fromData) {
+            parent = node;
+        }
+    };
+ 
+    this.contains(callback, traversal);
+ 
+    if (parent) {
+        index = findIndex(parent.children, data);
+ 
+        if (index === undefined) {
+            throw new Error('Node to remove does not exist.');
+        } else {
+            childToRemove = parent.children.splice(index, 1);
+        }
+    } else {
+        throw new Error('Parent does not exist.');
+    }
+ 
+    return childToRemove;
+};
+
+tree.traverseBF(function(node) {
     console.log(node.data);
 })
+
+// tree is an example of a root node
+tree.contains(function(node){
+    if (node.data === 'four') {
+        console.log(node);
+    }
+}, tree.traverseBF);
 
 
