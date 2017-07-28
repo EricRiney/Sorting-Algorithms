@@ -9,7 +9,6 @@ function Node(data) {
 function Tree(data) {
     var node = new Node(data);
     this._root = node;
-    
 }
 
 var tree = new Tree('one');
@@ -56,7 +55,8 @@ Tree.prototype.traverseDF = function(callback) {
     // this is a recurse and immediately-invoking function 
     (function recurse(currentNode) {
         // step 2
-        for (var i = 0, length = currentNode.children.length; i < length; i++) {
+        length = currentNode.children.length;
+        for (var i = 0; i < length; i++) {
             // step 3
             recurse(currentNode.children[i]);
         }
@@ -74,13 +74,14 @@ Tree.prototype.traverseDF = function(callback) {
 Tree.prototype.traverseBF = function(callback) {
     var queue = []; 
     queue.push(this._root);
-    currentTree = queue.shift();
-    while(currentTree){
-        for (var i = 0, length = currentTree.children.length; i < length; i++) {
-            queue.push(currentTree.children[i]);
+    currentNode = queue.shift();
+    while(currentNode){
+        length = currentNode.children.length; 
+        for (var i = 0; i < length; i++) {
+            queue.push(currentNode.children[i]);
         }
-        callback(currentTree);
-        currentTree = queue.shift();
+        callback(currentNode);
+        currentNode = queue.shift();
     }
 };
 
@@ -144,10 +145,10 @@ tree.traverseBF(function(node) {
 })
 
 // tree is an example of a root node
-tree.contains(function(node){
-    if (node.data === 'four') {
-        console.log(node);
-    }
-}, tree.traverseBF);
+// tree.contains(function(node){
+//     if (node.data === 'four') {
+//         console.log(node);
+//     }
+// }, tree.traverseBF);
 
 
