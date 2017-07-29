@@ -1,7 +1,5 @@
 /**
  * Breadth-First Traversal of a Binary Tree in JS
- * by Adrian Statescu <adrian@thinkphp.ro>
- * MIT Style License
  */
 
 function Node(info){
@@ -15,34 +13,32 @@ Node.prototype.toString = function() {
     return this.info;
 }  
 
-function BFT(node) {
+function BFT(node, data) {
     node.level = 1;
     var queue = [node];
-    var output = [];
     var current_level = node.level;
     while(queue.length > 0) {
-        current_node = queue.shift(); 
-        if(current_node.level > current_level) {
-            current_level++;
-            output.push("\n");
-        }  
-        output.push(current_node + " ");
-        
+        current_node = queue.shift();
+        if (current_node.info === data) {
+            return current_node;
+        }
+
         if(current_node.left) {
             current_node.left.level = current_level +1; 
             queue.push(current_node.left); 
         }  
+
         if(current_node.right) {
             current_node.right.level = current_level + 1; 
             queue.push(current_node.right); 
         }                  
     }
-    return output.join("") 
+    return ("This is the bottom: " + current_node.toString());
 }
 
 /*
        9
-    1      3
+    8      7
   2   4  6   8
 a   b   c 
  */
@@ -61,4 +57,4 @@ var root = new Node(9);
 
     root.left.right.right = new Node('c');
 
-console.log(BFT(root));
+console.log(BFT(root, 9));
