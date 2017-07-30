@@ -16,24 +16,29 @@ Node.prototype.toString = function() {
 function BFT(node, data) {
     node.level = 1;
     var queue = [node];
+    var tree = [];
     var current_level = node.level;
     while(queue.length > 0) {
         current_node = queue.shift();
         if (current_node.info === data) {
             return current_node;
         }
-
+        if(current_node.level > current_level) {
+            current_level++;
+            tree.push("\n");
+        }  
+        tree.push(current_node + " ");
+        
         if(current_node.left) {
             current_node.left.level = current_level +1; 
             queue.push(current_node.left); 
         }  
-
         if(current_node.right) {
             current_node.right.level = current_level + 1; 
             queue.push(current_node.right); 
         }                  
     }
-    return ("This is the bottom: " + current_node.toString());
+    return tree.join(" ") 
 }
 
 /*
@@ -57,4 +62,4 @@ var root = new Node(9);
 
     root.left.right.right = new Node('c');
 
-console.log(BFT(root, 9));
+console.log(BFT(root, 90));
