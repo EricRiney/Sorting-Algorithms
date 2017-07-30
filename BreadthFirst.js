@@ -56,7 +56,6 @@ var root = new Node(9);
 
     root.left.left.left = new Node('a');
     root.left.left.right = new Node('b');
-
     root.left.right.right = new Node('c');
 
 console.log(BFT(root, 90));
