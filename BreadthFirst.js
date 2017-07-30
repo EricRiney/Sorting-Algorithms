@@ -1,6 +1,7 @@
-/**
- * Breadth-First Traversal of a Binary Tree in JS
- */
+// Breadth First Search (BFS) algorithm traverses a 
+// graph in a breadthward motion and uses a queue to 
+// remember to get the next vertex to start a search, 
+// when a dead end occurs in any iteration.
 
 function Node(info){
     this.info = info
@@ -23,10 +24,6 @@ function BFT(node, data) {
         if (current_node.info === data) {
             return current_node;
         }
-        if(current_node.level > current_level) {
-            current_level++;
-            tree.push("\n");
-        }  
         tree.push(current_node + " ");
         
         if(current_node.left) {
