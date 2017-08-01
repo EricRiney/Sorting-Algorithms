@@ -25,7 +25,6 @@ function DFT(node, data) {
             console.log(tree);
             return current_node;
         }
- 
         tree.push(current_node + " ");
         
         if(current_node.left) {
@@ -62,5 +61,6 @@ var root = new Node(9);
 a   b   c 
 
 */
+
 
 console.log(DFT(root, 4));
